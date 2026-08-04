@@ -1,0 +1,24 @@
+# Runtime data — regenerated per deployment, not part of the source tree.
+# Annotation work-product and any backups of it are explicitly excluded:
+# they belong to whoever is running an instance of this tool, not the repo.
+annotations/*.json
+annotations_backup_*/
+subtask_vocab/*.json
+meta_cache/
+task_mapping.json
+server_log.txt
+
+# Keep the directory structure itself after a fresh clone.
+!annotations/.gitkeep
+!subtask_vocab/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS cruft
+.DS_Store
+Thumbs.db

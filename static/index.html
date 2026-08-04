@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ICL Manual Annotation</title>
+<link rel="stylesheet" href="style.css" />
+<script>
+  (function () {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light") document.documentElement.setAttribute("data-theme", "light");
+  })();
+</script>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="tb-group">
+    <label class="tb-label">Task</label>
+    <select id="taskSelect"><option value="">Loading tasks…</option></select>
+  </div>
+
+  <div class="tb-group">
+    <label class="tb-label">Episode</label>
+    <input id="searchBox" type="number" min="1" placeholder="#" />
+    <span id="posLabel" class="tb-static">– / –</span>
+    <button id="prevBtn" class="icon-btn" title="Previous episode">◀</button>
+    <button id="nextBtn" class="icon-btn" title="Next episode">▶</button>
+  </div>
+
+  <div class="tb-group">
+    <span id="datasetOutcomeTag" class="dataset-outcome-tag" title="Original dataset label">–</span>
+    <button id="markSuccessBtn" class="outcome-btn success-btn" title="Mark episode outcome as success">✓ Success</button>
+    <button id="markFailBtn" class="outcome-btn fail-btn" title="Mark episode outcome as fail">✗ Fail</button>
+    <button id="clearOutcomeBtn" class="outcome-btn" title="Clear outcome correction" disabled>Clear</button>
+  </div>
+
+  <div class="tb-group tb-right">
+    <span id="statusBadge" class="status-badge"></span>
+    <button id="saveBtn" class="primary-btn">Save</button>
+    <button id="clearBtn" class="secondary-btn">Clear</button>
+    <button id="deleteBtn" class="danger-btn">Delete</button>
+    <span class="tb-label">Annotator</span>
+    <input id="annotatorInput" type="text" placeholder="your name" />
+    <button id="themeToggleBtn" class="icon-btn" title="Toggle light/dark mode">🌙</button>
+  </div>
+</header>
+
+<main id="mainArea">
+  <section id="videoArea">
+    <div id="videoGrid">
+      <div class="video-panel main-panel">
+        <video id="cam-zed" muted playsinline></video>
+        <span class="cam-label">zed</span>
+      </div>
+      <div class="video-panel">
+        <video id="cam-fish0" muted playsinline></video>
+        <span class="cam-label">fish0</span>
+      </div>
+      <div class="video-panel">
+        <video id="cam-fish1" muted playsinline></video>
+        <span class="cam-label">fish1</span>
+      </div>
+    </div>
+
+    <div id="scrubber">
+      <div id="scrubFill"></div>
+      <div id="scrubPlayhead"></div>
+    </div>
+
+    <div id="subtaskLane"></div>
+
+    <div id="subtaskVocabRow" class="vocab-row" title="Click to add a key event with this subtask at the playhead"></div>
+
+    <div id="timeReadout">
+      <span id="timeText">0:00.0</span>
+      <span id="frameText">frame 0 / 0</span>
+    </div>
+
+    <div id="transportControls">
+      <button id="gotoStartBtn" class="icon-btn" title="Go to start">|◀</button>
+      <button id="stepBack10" class="icon-btn" title="Back 10 frames">«10</button>
+      <button id="stepBackFrame" class="icon-btn" title="Previous frame">⏮</button>
+      <button id="playBtn" class="icon-btn play-btn" title="Play / Pause">▶</button>
+      <button id="stepFwdFrame" class="icon-btn" title="Next frame">⏭</button>
+      <button id="stepFwd10" class="icon-btn" title="Forward 10 frames">10»</button>
+      <button id="gotoEndBtn" class="icon-btn" title="Go to end">▶|</button>
+
+      <span class="ctrl-sep"></span>
+
+      <span class="tb-label">Speed</span>
+      <div id="speedButtons"></div>
+    </div>
+  </section>
+
+  <aside id="sidePanel">
+    <div class="panel-block grow">
+      <h3>Key events (<span id="subtaskCount">0</span>)</h3>
+
+      <label class="field-label" for="subtaskValueInput">Value for new event (0–1)</label>
+      <input id="subtaskValueInput" type="number" min="0" max="1" step="0.01" value="0.50" />
+
+      <div class="subtask-add-row">
+        <input id="subtaskNameInput" list="subtaskOptions" type="text" placeholder="subtask name" />
+        <datalist id="subtaskOptions"></datalist>
+      </div>
+      <div class="subtask-add-row">
+        <button id="addKeyEventBtn" class="secondary-btn full-width" title="Add a key event at the playhead">+ Add key event at playhead</button>
+      </div>
+      <p class="hint-text">Value + name are set together when a key event is created — it holds constant until the next event. Drag a marker to move it in time, or click it (or its row below) to select, then type an exact time.</p>
+      <div id="subtaskList"></div>
+    </div>
+
+    <div class="panel-block">
+      <p id="taskMetaLine" class="meta-line"></p>
+    </div>
+  </aside>
+</main>
+
+<section id="valueChartSection">
+  <div class="chart-header">
+    <h3>Value vs time</h3>
+    <span class="hint-text">Constant between key events, smoothed at each transition. Click or drag to seek.</span>
+  </div>
+  <svg id="bigValueChart" viewBox="0 0 1000 320" preserveAspectRatio="none"></svg>
+</section>
+
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
