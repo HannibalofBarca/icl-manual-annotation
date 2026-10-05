@@ -35,13 +35,13 @@ pip install fastapi "uvicorn[standard]"
 ## Running
 
 ```bash
-python server.py --dataset owner/dataset-name --host 0.0.0.0 --port 8901
+python server.py --dataset owner/dataset-name --host 0.0.0.0 --port 8000
 ```
 
 - `--dataset` (alias `--repo-id`) — the Hugging Face dataset repo id to
   annotate. Falls back to `$ICL_DATASET_REPO_ID`, then to
   `adityx23/icl-dataset`, if omitted.
-- `--host` / `--port` — defaults `0.0.0.0` / `8901` (bound to `0.0.0.0` so
+- `--host` / `--port` — defaults `0.0.0.0` / `8000` (bound to `0.0.0.0` so
   it's reachable by other machines on the same WiFi/LAN, not just
   `localhost`).
 

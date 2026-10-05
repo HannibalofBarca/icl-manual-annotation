@@ -44,7 +44,7 @@ def _parse_cli_args():
         f"Defaults to $ICL_DATASET_REPO_ID or '{DEFAULT_REPO_ID}'.",
     )
     parser.add_argument("--host", default="0.0.0.0", help="Bind host (default: 0.0.0.0, i.e. reachable on the LAN)")
-    parser.add_argument("--port", type=int, default=8901, help="Bind port (default: 8901)")
+    parser.add_argument("--port", type=int, default=8000, help="Bind port (default: 8000)")
     parser.add_argument("-h", "--help", action="help", help="Show this help message and exit")
     args, _unknown = parser.parse_known_args()
     return args

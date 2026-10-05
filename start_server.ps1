@@ -12,7 +12,7 @@
 param(
     [string]$Dataset = "adityx23/icl-dataset",
     [string]$BindHost = "0.0.0.0",
-    [int]$Port = 8901
+    [int]$Port = 8000
 )
 
 $ErrorActionPreference = "Stop"

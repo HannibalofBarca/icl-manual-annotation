@@ -22,3 +22,8 @@ venv/
 # OS cruft
 .DS_Store
 Thumbs.db
+
+# Annotation datasets/exports are published on Hugging Face, not in git
+*.zip
+*.tar.gz
+icl_eval_set/
