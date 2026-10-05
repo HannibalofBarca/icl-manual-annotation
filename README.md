@@ -152,7 +152,3 @@ whichever machine is running an instance of this tool, not to the repo.
   (even on other computers) is a thin client saving back to that one
   machine. If two people annotate the *same* episode at once, last save
   wins — no merge logic.
-- **Video streaming, not proxying.** `<video>` tags point directly at
-  Hugging Face's `resolve` URLs (which support CORS + byte-range
-  requests), so scrubbing depends on the annotating machine's connection
-  to Hugging Face, not the server's.
